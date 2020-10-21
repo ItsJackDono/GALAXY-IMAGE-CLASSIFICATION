@@ -16,7 +16,7 @@ Required datafiles:
 •	All_zeros_benchmark 
 
 After downloading the 4 datafiles simply place in a directory that can be accessed and retrieved from inside the python scripts.
-After Downloading the ZIP file containing the artefact 4 files should be present,
+After Downloading the ZIP file containing the artefact 3 files should be present,
 •	GClassPrototype1.py
 •	GClassPrototype2.py
 •	testingPrototype2.py
