@@ -1,1 +1,3 @@
-This folder contains the python code for implementating a convolutional nerual network with the classification of galaxy images corrospnding to 37 weighted probabilities. 
+This folder contains the python code for implementating a convolutional nerual network with the classification of galaxy images corrospnding to 37 weighted probabilities.
+
+For final iteration of the algorithm please use prototype 2 on the testing algorithm.
