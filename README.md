@@ -1,9 +1,8 @@
 # GALAXY-IMAGE-CLASSIFICATION-USING-MACHINE-LEARNING-IN-PYTHON
 
-The project developed was for my university disseration with hte focus of using using a Deep Convolution Nerual Network on a set of galaxy images. The galaxy images are classified using a weighted probability distribution of 37 decisions which ditctate whether an image is of a type of class (Spiral, Elipitcal, and Irregular. The dataset trained used the galaxy zoom challenge hosted on kaggle (https://www.kaggle.com/c/galaxy-zoo-the-galaxy-challenge/data). The CNN architecture design was developed with hardware constraints in mind with two prototype algorithms developed with a final testing algoirthm which allowed for 60%+ accruacy depending on the amount of Epoch iterations. Images and documentation can be found within the repository with results of testing and design methods chosen.
+The project developed was for my university disseration with the focus of using a Deep Convolution Neural Network on a set of galaxy images. The galaxy images are classified using a weighted probability distribution of 37 decisions which ditctate whether an image is of a type of class (Spiral, Elipitcal, and Irregular). The dataset trained used the galaxy zoom challenge hosted on kaggle (https://www.kaggle.com/c/galaxy-zoo-the-galaxy-challenge/data). The CNN architecture design was developed with hardware constraints in mind with two prototype algorithms developed with a final testing algoirthm which allowed for 60%+ accruacy depending on the amount of Epoch iterations. Images and documentation can be found within the repository with results of testing and design methods chosen.
 
 For running the project please download the files and follow the steps below for an indepth description of how to set up and execute  the project.
-
 
 #Setting up the project for execution
 
