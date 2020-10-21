@@ -7,9 +7,11 @@ Created on Fri May  1 12:21:47 2020
 
 #importating the neccassary librarys needed for creating a CNN model, ploting data, saving history and testing data
 import keras
+#new library for  storing the weights after the model has been trained
+import h5py
 from keras.models import Sequential
 from keras.preprocessing.image import ImageDataGenerator
-from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D, BatchNormalization
+from keras.layers import Activation, Dense, Dropout, Flatten, Conv2D, MaxPooling2D, BatchNormalization
 import csv
 import warnings
 from keras import backend as K
@@ -56,6 +58,8 @@ train_datagen = ImageDataGenerator(
     rotation_range=45,
     shear_range=0.2,
     zoom_range=0.2,
+    horizontal_flip=True,
+    vertical_flip=True,
     #this validation split will change how the training and validation splits the images between both training stages
     #speicifcally 20% of the images will be used for vlidation as a way of testing the training data\
     validation_split=0.20)
@@ -93,7 +97,21 @@ valid_set = train_datagen.flow_from_dataframe(
     class_mode='raw',
     subset='validation')
 
+sample_trainin_images, _ = next(training_set)
 
+#this function was created to see changed images being sent 
+
+def plotImages(images_arr):
+    fig, axes = plt.subplots(1, 5, figsize=(20,20))
+    axes = axes.flatten()
+    for img, ax in zip(images_arr, axes):
+        k = img.squeeze()
+        ax.imshow(k)
+        ax.axis('off')
+    plt.tight_layout()
+    plt.show()
+#calling the plot images function to display images
+plotImages(sample_trainin_images[:5])
 
 #following the design scheme the use of keras allows for the creating and following the design easier
 #higher amounts where chosen for conv2D layers but due to hardware constraints this was limited
@@ -107,7 +125,14 @@ model.add(Conv2D(32, (3, 3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
 
-model.add(Dropout(0.5))
+
+model.add(Dropout(0.25))
+model.add(Dense(128))
+model.add(Activation('relu'))
+model.add(Dropout(0.25))
+model.add(Dense(128))
+model.add(Activation('relu'))
+
 model.add(Flatten())
 model.add(Dense(37, activation='sigmoid'))
 model.summary()
@@ -127,7 +152,7 @@ model.compile(loss=keras.losses.categorical_crossentropy,
 classifier = model.fit_generator(
     training_set,
     steps_per_epoch=10,
-    epochs=10,
+    epochs=30,
     validation_data=valid_set,
     validation_steps=30
 )
@@ -143,8 +168,10 @@ val_loss = classifier.history['val_loss']
 print("Time Taken to run the model:", timeit.default_timer() - start)
 #printing these keys helped plot the data onto the graphs for testing
 print(classifier.history.keys())
-
-epochs_range = range(10)
+#saving weights based on the new prototype design iteration
+#this allows for testing on the new images later on by using 
+model.save_weights('models.h5')
+epochs_range = range(30)
 #plotting the training accuracy and validation accuracy onto a graph based on iterations of epochs
 plt.figure(figsize=(8,8))
 plt.subplot(1,2,1)
